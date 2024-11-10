@@ -1,0 +1,25 @@
+<!-- templates/view_counts.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Word Counts</title>
+</head>
+<body>
+    <h1>Word Counts by Letter</h1>
+    <table border="1">
+        <tr>
+            <th>Letter</th>
+            <th>Count</th>
+        </tr>
+        {% for letter, count in counts_by_letter %}
+        <tr>
+            <td>{{ letter }}</td>
+            <td>{{ count }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    
+    <h2>Total Words: {{ total_count }}</h2>
+</body>
+</html>

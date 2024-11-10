@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Master List of Telugu Words</title>
+</head>
+<body>
+    <h1>Master List of Telugu Words</h1>
+
+    <h2>Total Word Count: {{ total_count }}</h2> <!-- Display total count here -->
+
+    <h2>Word Counts:</h2>
+    <ul>
+        {% for word, count in words_with_counts %}
+            <li>{{ word }} - Count: {{ count }}</li>
+        {% endfor %}
+    </ul>
+
+    <a href="/">Go Back</a>
+</body>
+</html>

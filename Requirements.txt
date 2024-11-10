@@ -1,0 +1,39 @@
+Here's a sample requirements.txt file based on the dependencies in your project:
+
+
+Flask==2.0.1
+psycopg2==2.9.1
+pytesseract==0.3.8
+Pillow==8.2.0
+pdf2image==1.16.0
+
+Explanation of Each Dependency
+
+Flask: The web framework you’re using to build the application.
+
+psycopg2: Required for connecting to PostgreSQL from Flask.
+
+pytesseract: Python wrapper for Tesseract OCR, used for extracting text from images.
+
+Pillow: The Python Imaging Library, which is necessary for handling image files created from PDFs.
+
+pdf2image: Converts PDF pages to images so they can be processed by Tesseract.
+
+Additional Installation Notes:
+
+If you’re using Tesseract, make sure it’s installed on your system separately, as it’s not a Python package and won’t be installed via requirements.txt.
+
+To install these packages, run:
+
+pip install -r requirements.txt
+
+This file should cover all the essential dependencies for your project. Let me know if there are other libraries you’ve included that should be added!
+
+
+
+
+
+
+
+
+

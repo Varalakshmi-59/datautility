@@ -1,0 +1,16 @@
+<!-- templates/add_word.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Word</title>
+</head>
+<body>
+    <h1>Add a New Word</h1>
+    <form action="{{ url_for('add_word') }}" method="POST">
+        <label for="word">Word:</label>
+        <input type="text" id="word" name="word" required>
+        <button type="submit">Add Word</button>
+    </form>
+</body>
+</html>
