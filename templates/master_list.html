@@ -4,19 +4,54 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Master List of Telugu Words</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .no-data {
+            font-style: italic;
+            color: #999;
+        }
+    </style>
 </head>
 <body>
+
     <h1>Master List of Telugu Words</h1>
+    <p>Total Word Count: {{ total_word_count }}</p>
 
-    <h2>Total Word Count: {{ total_count }}</h2> <!-- Display total count here -->
+    {% if words_with_source %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Word</th>
+                    <th>Source</th>
+                    <th>Count</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for entry in words_with_source %}
+                    <tr>
+                        <td>{{ entry.word }}</td>
+                        <td>{{ entry.source }}</td>
+                        <td>{{ entry.count }}</td> <!-- Ensure this matches the data -->
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p class="no-data">No words available to display.</p>
+    {% endif %}
 
-    <h2>Word Counts:</h2>
-    <ul>
-        {% for word, count in words_with_counts %}
-            <li>{{ word }} - Count: {{ count }}</li>
-        {% endfor %}
-    </ul>
-
-    <a href="/">Go Back</a>
 </body>
 </html>

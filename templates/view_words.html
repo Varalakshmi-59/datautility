@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Telugu Word List</title>
+</head>
+<body>
+    <h1>Extracted Telugu Words</h1>
+
+    {% if words_with_source %}
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Word</th>
+                    <th>Source</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for entry in words_with_source %}
+                    <tr>
+                        <td>{{ entry['word'] }}</td>
+                        <td>{{ entry['source'] }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No words to display or data format issue.</p>
+    {% endif %}
+</body>
+</html>

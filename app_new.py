@@ -1,6 +1,8 @@
 from flask import Flask, request, render_template, redirect, url_for
 import os
 import psycopg2
+from datetime import datetime
+import csv
 from extract_telugu_words import extract_telugu_words  # Ensure this import matches your file structure
 
 app = Flask(__name__)
@@ -14,6 +16,31 @@ def connect_db():
         host='localhost',
         port='5432'
     )
+
+# Function to ensure a directory exists
+def ensure_directory(directory):
+    if not os.path.exists(directory):
+        os.makedirs(directory)
+
+# Function to save extracted words to a CSV file
+def save_words_to_csv(telugu_words, source_filename, output_directory='extracted_words'):
+    # Ensure the output directory exists
+    ensure_directory(output_directory)
+
+    # Generate a unique filename for the CSV
+    base_name = os.path.splitext(source_filename)[0]
+    timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
+    output_filename = f"{base_name}_words_{timestamp}.csv"
+    output_path = os.path.join(output_directory, output_filename)
+
+    # Write the words to the CSV file
+    with open(output_path, mode='w', newline='', encoding='utf-8') as csv_file:
+        writer = csv.writer(csv_file)
+        writer.writerow(['Word', 'Source'])  # Header row
+        for entry in telugu_words:
+            writer.writerow([entry['word'], entry['source']])
+
+    print(f"Words saved to {output_path}")
 
 # Function to update the database with extracted words
 def update_db_with_words(telugu_words):
@@ -62,6 +89,9 @@ def upload_pdf():
 
     if not words_with_source:
         return "No Telugu words found in the PDF.", 400
+
+    # Save words to a CSV file
+    save_words_to_csv(words_with_source, file.filename)
 
     # Update the database with the extracted words
     update_db_with_words(words_with_source)

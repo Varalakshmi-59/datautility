@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Telugu Words from PDF</title>
+</head>
+<body>
+    <h1>Telugu Words Extracted from PDF</h1>
+    
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Word</th>
+                <th>Source File</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for entry in words_with_source %}
+            <tr>
+                <td>{{ entry.word }}</td>
+                <td>{{ entry.source }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
